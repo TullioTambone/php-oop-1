@@ -3,37 +3,40 @@
 class Movie{
     public $titolo;
     public $genere;
-
-    public function __construct($titolo, $genere){
+    
+    public function __construct($titolo, Genere $genere){
         $this->titolo = $titolo;
         $this->genere = $genere;
     }
 
     public function getTitle(){
-        return "$this->titolo $this->genere";
+        return "nome: $this->titolo ";
+    }
+    
+    public function getGenere(){
+        $array = '';
+        foreach($this->genere as $gen){
+            $array .= $gen . ', ';
+        }
+        return 'i generi sono:' . $array;
     }
 }
 
 class Genere{
-    public $genere1;
-    public $genere2;
-    public $genere3;
+    public $azione;
+    public $triller;
+    public $fantasy;
 
-    public function __construct($genere1, $genere2, $genere3){
-        $this->genere1 = $genere1;
-        $this->genere2 = $genere2;
-        $this->genere3 = $genere3;
-    }
-
-    public function setGenere($genere){
-        $this->genere1 = $genere;
-        $this->genere2 = $genere;
-        $this->genere3 = $genere;
+    public function __construct( $azione, $triller, $fantasy ){
+        $this->azione = $azione;
+        $this->triller = $triller;
+        $this->fantasy = $fantasy;
     }
 }
 
-$film = new Movie('gorgio', 'zola');
-var_dump($film);
-echo $film -> getTitle();
 
+$film = new Movie('matrix', new Genere('action', 'triller', 'fantasy'));
+
+echo $film->getTitle(); // Output: Matrix
+echo $film->getGenere(); // Output: action, triller, lampis
 ?>
